@@ -208,39 +208,39 @@
     <Label fx:id="shipsLabel" alignment="CENTER" layoutX="1070.0" layoutY="30.0" style="-fx-text-fill: yellow; -fx-font-size: 25;" text="You should destroy these ships:" />
     <HBox fx:id="ship1"  prefHeight="40.0" prefWidth="100.0"  layoutX="1070.0" layoutY="70.0" GridPane.columnIndex="0" >
         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r1c0" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
         </children>
     </HBox>
     <HBox fx:id="ship2"  prefHeight="40.0" prefWidth="100.0"  layoutX="1070.0" layoutY="110.0" GridPane.columnIndex="0" >
         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r2c0" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r2c1" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
 
 
         </children>
     </HBox>
     <HBox fx:id="ship3"  prefHeight="40.0" prefWidth="100.0" layoutX="1070.0" layoutY="150.0" GridPane.columnIndex="0" >
         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r3c0" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r3c1" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r3c2" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
         </children>
     </HBox>
     <HBox fx:id="ship4"  prefHeight="40.0" prefWidth="100.0" layoutX="1070.0" layoutY="190.0" GridPane.columnIndex="0" >
         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r4c0" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r4c1" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r4c2" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r4c3" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
         </children>
     </HBox>
     <HBox fx:id="ship5"  prefHeight="40.0" prefWidth="100.0" layoutX="1070.0" layoutY="230.0" GridPane.columnIndex="0" >
         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r5c0" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r5c1" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r5c2" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r5c3" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+            <Rectangle fx:id="r5c4" arcHeight="5.0" arcWidth="5.0" fill="yellow" height="30.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
 
         </children>
     </HBox>
