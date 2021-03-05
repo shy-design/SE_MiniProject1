@@ -66,6 +66,8 @@ public class Controller {
     @FXML
     private Label playerMisses;
     @FXML
+    private Label playerTimer;
+    @FXML
     private Label playerTriesScore;
     @FXML
     private Label playerStrikesScore;
@@ -141,6 +143,7 @@ public class Controller {
 
             createBoardWithShips();
             startGameBtn.setDisable(true);
+
         }
         if (event.getSource().equals(resetBtn)) {
             reset();
@@ -227,6 +230,7 @@ public class Controller {
                     playerStrikesScore.setText(Integer.toString(playerStrikesN));
                     playerTriesN++;
                     playerTriesScore.setText(Integer.toString(playerTriesN));
+                    resetShips();
                     switch (playerStrikesN){
                         case 1:
                             r1c0.setFill(Color.RED);
@@ -399,21 +403,7 @@ public class Controller {
         }
 
         //Resetting the Ships
-        r1c0.setFill(Color.YELLOW);
-        r2c0.setFill(Color.YELLOW);
-        r2c1.setFill(Color.YELLOW);
-        r3c0.setFill(Color.YELLOW);
-        r3c1.setFill(Color.YELLOW);
-        r3c2.setFill(Color.YELLOW);
-        r4c0.setFill(Color.YELLOW);
-        r4c1.setFill(Color.YELLOW);
-        r4c2.setFill(Color.YELLOW);
-        r4c3.setFill(Color.YELLOW);
-        r5c0.setFill(Color.YELLOW);
-        r5c1.setFill(Color.YELLOW);
-        r5c2.setFill(Color.YELLOW);
-        r5c3.setFill(Color.YELLOW);
-        r5c4.setFill(Color.YELLOW);
+      resetShips();
 
 
 
@@ -430,6 +420,26 @@ public class Controller {
         nameIsPresent = true;
 
     }
+
+    public void resetShips(){
+        r1c0.setFill(Color.YELLOW);
+        r2c0.setFill(Color.YELLOW);
+        r2c1.setFill(Color.YELLOW);
+        r3c0.setFill(Color.YELLOW);
+        r3c1.setFill(Color.YELLOW);
+        r3c2.setFill(Color.YELLOW);
+        r4c0.setFill(Color.YELLOW);
+        r4c1.setFill(Color.YELLOW);
+        r4c2.setFill(Color.YELLOW);
+        r4c3.setFill(Color.YELLOW);
+        r5c0.setFill(Color.YELLOW);
+        r5c1.setFill(Color.YELLOW);
+        r5c2.setFill(Color.YELLOW);
+        r5c3.setFill(Color.YELLOW);
+        r5c4.setFill(Color.YELLOW);
+    }
+
+
 
 }
 
