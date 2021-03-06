@@ -268,12 +268,15 @@ public class Controller {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning. Cell is already clicked");
                     alert.setContentText("This cell was already clicked");
+                    alert.show();
+
 
                 }
                 else if (((Rectangle) node).getFill().equals(pattern2)) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning. Cell is already clicked");
                     alert.setContentText("This cell was already clicked");
+                    alert.show();
                 }
 
                 else {
