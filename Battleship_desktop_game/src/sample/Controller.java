@@ -26,7 +26,7 @@ public class Controller {
     Image map2 = new Image("sample/image/bomb.jpg");
     ImagePattern pattern2 = new ImagePattern(map2);
 
-    String musicFile = "Battleship_desktop_game/src/sample/audio1.mp3";
+    String musicFile = "src/sample/audio/audio1.mp3";
     AudioClip audioClip = new AudioClip(new File(musicFile).toURI().toString());
 
     private int playerTriesN = 0, playerMissesN = 0, playerStrikesN = 0, player = 0, enemy = 0;
