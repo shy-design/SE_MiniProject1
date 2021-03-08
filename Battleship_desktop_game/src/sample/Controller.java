@@ -1,22 +1,19 @@
 package sample;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import sample.Model.Ship;
 
-import java.net.URISyntaxException;
+import java.io.File;
 import java.util.*;
 
 public class Controller {
@@ -28,6 +25,9 @@ public class Controller {
 
     Image map2 = new Image("sample/image/bomb.jpg");
     ImagePattern pattern2 = new ImagePattern(map2);
+
+    String musicFile = "Battleship_desktop_game/src/sample/audio1.mp3";
+    AudioClip audioClip = new AudioClip(new File(musicFile).toURI().toString());
 
     private int playerTriesN = 0, playerMissesN = 0, playerStrikesN = 0, player = 0, enemy = 0;
     private Random random = new Random();
@@ -216,6 +216,8 @@ public class Controller {
 
 
         Rectangle hitRectangle = (Rectangle) event.getPickResult().getIntersectedNode();
+        if (audioClip.isPlaying()) audioClip.stop();
+
         int x = GridPane.getRowIndex(hitRectangle);
         int y = GridPane.getColumnIndex(hitRectangle);
         for (Node node : gameBoard.getChildren()) {
@@ -226,10 +228,13 @@ public class Controller {
 
                     ((Rectangle) node).setFill(pattern1);
 
+                    audioClip.play();
+
                     playerStrikesN++;
                     playerStrikesScore.setText(Integer.toString(playerStrikesN));
                     playerTriesN++;
                     playerTriesScore.setText(Integer.toString(playerTriesN));
+
                     resetShips();
                     switch (playerStrikesN){
                         case 1:
@@ -325,6 +330,8 @@ public class Controller {
         }
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+            if (audioClip.isPlaying())
+                audioClip.stop();
             reset();
         } else {
             System.exit(-1);
@@ -441,8 +448,5 @@ public class Controller {
         r5c3.setFill(Color.YELLOW);
         r5c4.setFill(Color.YELLOW);
     }
-
-
-
 }
 
