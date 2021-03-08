@@ -1,26 +1,33 @@
 package sample;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import sample.Model.Ship;
 
-import java.net.URISyntaxException;
+import java.io.File;
 import java.util.*;
 
 public class Controller {
 
     private boolean nameIsPresent = false;
+    //Setting the image of the cell to the ship/bomb
+    Image map1 = new Image("sample/image/ship.jpg");
+    ImagePattern pattern1 = new ImagePattern(map1);
+
+    Image map2 = new Image("sample/image/bomb.jpg");
+    ImagePattern pattern2 = new ImagePattern(map2);
+
+    String musicFile = "src/sample/audio/audio1.mp3";
+    AudioClip audioClip = new AudioClip(new File(musicFile).toURI().toString());
 
     private int playerTriesN = 0, playerMissesN = 0, playerStrikesN = 0, player = 0, enemy = 0;
     private Random random = new Random();
@@ -59,6 +66,8 @@ public class Controller {
     @FXML
     private Label playerMisses;
     @FXML
+    private Label playerTimer;
+    @FXML
     private Label playerTriesScore;
     @FXML
     private Label playerStrikesScore;
@@ -71,6 +80,9 @@ public class Controller {
     private Button startGameBtn;
     @FXML
     private Button resetBtn;
+    @FXML
+    private Rectangle r1c0,r2c0, r2c1,r3c0,r3c1,r3c2,r4c0, r4c1, r4c2, r4c3, r4c4, r5c0, r5c1, r5c2, r5c3, r5c4, r5c5;
+
 
 
     @FXML
@@ -131,6 +143,7 @@ public class Controller {
 
             createBoardWithShips();
             startGameBtn.setDisable(true);
+
         }
         if (event.getSource().equals(resetBtn)) {
             reset();
@@ -200,38 +213,80 @@ public class Controller {
     @FXML
     private void hitShip(MouseEvent event) {
 
+
+
         Rectangle hitRectangle = (Rectangle) event.getPickResult().getIntersectedNode();
+        if (audioClip.isPlaying()) audioClip.stop();
+
         int x = GridPane.getRowIndex(hitRectangle);
         int y = GridPane.getColumnIndex(hitRectangle);
         for (Node node : gameBoard.getChildren()) {
             if (GridPane.getRowIndex(node) == x & GridPane.getColumnIndex(node) == y) {
                 String value = node.getId();
+                System.out.println(((Rectangle) node).getFill());
                 if ((value != null) && !node.getId().equals("notPermitted")) {
 
-                    ((Rectangle) node).setFill(Color.RED);
+                    ((Rectangle) node).setFill(pattern1);
+
+                    audioClip.play();
 
                     playerStrikesN++;
                     playerStrikesScore.setText(Integer.toString(playerStrikesN));
                     playerTriesN++;
                     playerTriesScore.setText(Integer.toString(playerTriesN));
+
+                    resetShips();
+                    switch (playerStrikesN){
+                        case 1:
+                            r1c0.setFill(Color.RED);
+                            break;
+                        case 2:
+                            r2c0.setFill(Color.RED);
+                            r2c1.setFill(Color.RED);
+                            break;
+                        case 3:
+                            r3c0.setFill(Color.RED);
+                            r3c1.setFill(Color.RED);
+                            r3c2.setFill(Color.RED);
+                            break;
+                        case 4:
+                            r4c0.setFill(Color.RED);
+                            r4c1.setFill(Color.RED);
+                            r4c2.setFill(Color.RED);
+                            r4c3.setFill(Color.RED);
+                            break;
+                        case 5:
+                            r5c0.setFill(Color.RED);
+                            r5c1.setFill(Color.RED);
+                            r5c2.setFill(Color.RED);
+                            r5c3.setFill(Color.RED);
+                            r5c4.setFill(Color.RED);
+                            break;
+                    }
+
                     messageBoard.appendText("\nPlayer->Wow, It was a strike!");
+
                     node.setId("notPermitted"); // the already pointed cell can not be pointed again
 
                 }
-                else if (((Rectangle) node).getFill().equals(Color.BLACK)) {
+                else if (((Rectangle) node).getFill().equals(pattern1)) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning. Cell is already clicked");
                     alert.setContentText("This cell was already clicked");
+                    alert.show();
+
 
                 }
-                else if (((Rectangle) node).getFill().equals(Color.RED)) {
+                else if (((Rectangle) node).getFill().equals(pattern2)) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning. Cell is already clicked");
                     alert.setContentText("This cell was already clicked");
+                    alert.show();
                 }
 
                 else {
-                    ((Rectangle) node).setFill(Color.BLACK);
+
+                    ((Rectangle) node).setFill(pattern2);
 
                     playerTriesN++;
                     playerTriesScore.setText(Integer.toString(playerTriesN));
@@ -275,6 +330,8 @@ public class Controller {
         }
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+            if (audioClip.isPlaying())
+                audioClip.stop();
             reset();
         } else {
             System.exit(-1);
@@ -355,6 +412,12 @@ public class Controller {
             node.setId(null);
         }
 
+        //Resetting the Ships
+      resetShips();
+
+
+
+
     }
 
     private void createPlayerName() {
@@ -368,5 +431,22 @@ public class Controller {
 
     }
 
+    public void resetShips(){
+        r1c0.setFill(Color.YELLOW);
+        r2c0.setFill(Color.YELLOW);
+        r2c1.setFill(Color.YELLOW);
+        r3c0.setFill(Color.YELLOW);
+        r3c1.setFill(Color.YELLOW);
+        r3c2.setFill(Color.YELLOW);
+        r4c0.setFill(Color.YELLOW);
+        r4c1.setFill(Color.YELLOW);
+        r4c2.setFill(Color.YELLOW);
+        r4c3.setFill(Color.YELLOW);
+        r5c0.setFill(Color.YELLOW);
+        r5c1.setFill(Color.YELLOW);
+        r5c2.setFill(Color.YELLOW);
+        r5c3.setFill(Color.YELLOW);
+        r5c4.setFill(Color.YELLOW);
+    }
 }
 
