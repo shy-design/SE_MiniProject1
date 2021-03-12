@@ -26,8 +26,8 @@ public class Controller {
     Image map2 = new Image("sample/image/bomb.jpg");
     ImagePattern pattern2 = new ImagePattern(map2);
 
-    //String musicFile = "src/sample/audio/audio1.mp3";
-    //AudioClip audioClip = new AudioClip(new File(musicFile).toURI().toString());
+    String musicFile = "src/sample/audio/audio1.mp3";
+    AudioClip audioClip = new AudioClip(new File(musicFile).toURI().toString());
 
     private int playerTriesN = 0, playerMissesN = 0, playerStrikesN = 0, player = 0, enemy = 0;
     private Random random = new Random();
@@ -104,8 +104,8 @@ public class Controller {
         sb.append("\nWelcome to Battleship Game! \n\n");
         sb.append("Instruction:\n");
         sb.append("* You should destroy 5 ships *\n");
-        sb.append("* Each ship has specific size which is shown on the left *\n");
-        sb.append("* You have 30 tries to find and destroy all ships *\n\n");
+        sb.append("* Each ship has specific size which is shown to the left *\n");
+        sb.append("* You have 50 tries to find and destroy all ships *\n\n");
         sb.append("Please, press START GAME to begin\n");
         messageBoard.setText(sb.toString());
         messageBoard.setEditable(false);
@@ -116,7 +116,6 @@ public class Controller {
         playerTriesScore.setText(Integer.toString(playerTriesN));
         playerStrikesScore.setText(Integer.toString(playerStrikesN));
         playerMissesScore.setText(Integer.toString(playerMissesN));
-
 
     }
 
@@ -217,10 +216,8 @@ public class Controller {
     @FXML
     private void hitShip(MouseEvent event) {
 
-
-
         Rectangle hitRectangle = (Rectangle) event.getPickResult().getIntersectedNode();
-        //if (audioClip.isPlaying()) audioClip.stop();
+        if (audioClip.isPlaying()) audioClip.stop();
 
         int x = GridPane.getRowIndex(hitRectangle);
         int y = GridPane.getColumnIndex(hitRectangle);
@@ -232,7 +229,7 @@ public class Controller {
 
                     ((Rectangle) node).setFill(pattern1);
 
-                    //audioClip.play();
+                    audioClip.play();
 
                     playerStrikesN++;
                     playerStrikesScore.setText(Integer.toString(playerStrikesN));
@@ -321,7 +318,7 @@ public class Controller {
 
                             break;
                     }
-                    node.setId(null);
+                    //node.setId(null);
                     messageBoard.appendText("\nPlayer->Wow, It was a strike!");
 
                     node.setId("notPermitted"); // the already pointed cell can not be pointed again
@@ -361,7 +358,7 @@ public class Controller {
                     showWinner(player);
                     return;
                 }
-                else if(playerTriesN == 31) {
+                else if(playerTriesN == 51) {
                     gameBoard.setDisable(true);
                     enemy++;
                     showWinner(enemy);
@@ -379,18 +376,18 @@ public class Controller {
         alert.setTitle("Game Over");
         if (point == enemy) {
             alert.setHeaderText("Enemy Won");
-            alert.setContentText("The Game Has been finished.Better Luck Next Time.Replay?");
+            alert.setContentText("The Game has been finished.Better Luck Next Time! Replay?");
             messageBoard.setText("Unfortunately you lost the game.");
 
         } else {
             alert.setHeaderText("Player Won");
-            alert.setContentText("Congratulation.You Won the Game!!! Replay?");
-            messageBoard.setText("Great! You won the game.");
+            alert.setContentText("Congratulations! You Won the Game!!! Replay?");
+            messageBoard.setText("Great! You won the game!");
         }
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            //if (audioClip.isPlaying())
-              //  audioClip.stop();
+            if (audioClip.isPlaying())
+                audioClip.stop();
             reset();
         } else {
             System.exit(-1);
@@ -473,10 +470,6 @@ public class Controller {
 
         //Resetting the Ships
       resetShips();
-
-
-
-
     }
 
     private void createPlayerName() {
@@ -506,6 +499,12 @@ public class Controller {
         r5c2.setFill(Color.YELLOW);
         r5c3.setFill(Color.YELLOW);
         r5c4.setFill(Color.YELLOW);
+
+        ship1Count = 0;
+        ship2Count = 0;
+        ship3Count = 0;
+        ship4Count = 0;
+        ship5Count = 0;
     }
 }
 
